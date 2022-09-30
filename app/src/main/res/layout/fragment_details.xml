@@ -1,15 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:alpha="0.8"
+    android:background="@color/black"
     tools:context=".presentation.MainActivity">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-         />
+    <ImageView
+        android:id="@+id/imageview_detail_poster"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/spacing_empty"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/place_holder_image" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textview_details_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_5"
+        android:textAppearance="@style/ionoxTestTexViewStyle"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageview_detail_poster"
+        tools:text="titulo" />
+
+    <TextView
+        android:id="@+id/textview_details_release_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_5"
+        android:textAppearance="@style/ionoxTestTexViewStyle"
+        app:layout_constraintStart_toStartOf="@+id/textview_details_plot"
+        app:layout_constraintTop_toBottomOf="@+id/textview_details_title"
+        tools:text="releaseData" />
+
+    <TextView
+        android:id="@+id/textview_details_stars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/ionoxTestTexViewStyle"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textview_details_release_date"
+        app:layout_constraintBaseline_toBottomOf="@id/textview_details_release_date"
+        app:layout_constraintEnd_toEndOf="@+id/textview_details_plot"
+        tools:text="stars" />
+
+    <TextView
+        android:id="@+id/textview_details_plot"
+        android:layout_width="@dimen/spacing_empty"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_5"
+        android:layout_marginStart="@dimen/spacing_5"
+        android:layout_marginTop="@dimen/spacing_5"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/ionoxTestTexViewStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_details_stars"
+        tools:text="plot" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottom_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_half_screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

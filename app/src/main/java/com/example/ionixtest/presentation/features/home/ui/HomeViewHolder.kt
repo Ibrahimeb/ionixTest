@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.ionixtest.R
+import com.example.ionixtest.commons.glideConfig
 import com.example.ionixtest.databinding.ViewMovieItemBinding
 import com.example.ionixtest.domain.models.MovieModel
 
@@ -21,12 +22,7 @@ class HomeViewHolder(private val binding: ViewMovieItemBinding) : RecyclerView.V
         binding.apply {
             textviewTitle.text = model.title
             textviewDate.text = model.releaseState
-
-            Glide.with(binding.root.context)
-                .load(model.image)
-                .placeholder(R.drawable.place_holder_image)
-                .fitCenter()
-                .into(imageviewPoster)
+            glideConfig(model.image, imageviewPoster)
             root.setOnClickListener {
                 callback(model.id)
             }
