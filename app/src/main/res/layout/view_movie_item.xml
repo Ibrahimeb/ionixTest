@@ -2,11 +2,10 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_margin="@dimen/spacing_5"
-    android:layout_height="300dp"
-    app:cardBackgroundColor="@color/cardview_dark_background"
-    app:cardCornerRadius="@dimen/spacing_5">
+    android:layout_width="150dp"
+    android:layout_margin="@dimen/spacing_3"
+    android:layout_height="250dp"
+    app:cardBackgroundColor="@color/gray">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,8 +15,7 @@
             android:id="@+id/imageview_poster"
             android:layout_width="@dimen/spacing_empty"
             android:layout_height="@dimen/spacing_empty"
-            android:layout_marginTop="@dimen/spacing_10"
-            android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/spacing_3"
             app:layout_constraintBottom_toTopOf="@+id/guideline_bottom_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,23 +24,31 @@
 
         <TextView
             android:id="@+id/textview_title"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/spacing_empty"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_2"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:maxLines="2"
+            android:layout_margin="@dimen/spacing_3"
             android:textAppearance="@style/ionoxTestTexViewStyle"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageview_poster"
             tools:text="Title" />
 
         <TextView
             android:id="@+id/textview_date"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/spacing_empty"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_5"
+            android:layout_margin="@dimen/spacing_3"
             android:textAppearance="@style/ionoxTestTexViewStyle"
+            android:gravity="center"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guideline_bottom_image"
             tools:text="date " />
 
         <androidx.constraintlayout.widget.Guideline

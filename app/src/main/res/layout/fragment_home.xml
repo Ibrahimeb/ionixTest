@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".presentation.features.home.ui.HomeFragment">
 
     <TextView
@@ -11,14 +12,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_5"
-        android:text="the best list movie"
+        android:text="The Best List Movie"
+        android:textColor="@color/white"
         android:textAppearance="@android:style/TextAppearance.Material.Headline"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_home"
         android:layout_width="@dimen/spacing_empty"
         android:layout_height="@dimen/spacing_empty"
         android:layout_marginTop="@dimen/spacing_5"
