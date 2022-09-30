@@ -68,5 +68,7 @@ fun MoviesItem.toModel() =
         title = title.orEmpty(),
         image = image.orEmpty(),
         id = id.orEmpty(),
-        releaseState = releaseState.orEmpty()
+        releaseState = releaseState.orEmpty(),
+        plot = plot.orEmpty(),
+        stars = starList?.map { it.name.orEmpty() } ?: emptyList()
     )

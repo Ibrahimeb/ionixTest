@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.ionixtest.databinding.FragmentHomeBinding
 import com.example.ionixtest.domain.models.MovieModel
@@ -24,13 +25,13 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(inflater)
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel.getMovies()
         viewModel.eventsHomeLiveData.observe(viewLifecycleOwner, ::handlerEvent)
     }
@@ -45,7 +46,7 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView(itemList: List<MovieModel>) {
         homeAdapter = HomeAdapter(itemList) {
-            // TODO: implement details actions
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it))
         }
         binding.recyclerviewHome.apply {
             adapter = homeAdapter

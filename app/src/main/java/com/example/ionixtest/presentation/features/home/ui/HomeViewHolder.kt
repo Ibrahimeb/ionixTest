@@ -17,7 +17,7 @@ class HomeViewHolder(private val binding: ViewMovieItemBinding) : RecyclerView.V
         }
     }
 
-    fun render(model: MovieModel, callback: () -> Unit) {
+    fun render(model: MovieModel, callback: (movieId: String) -> Unit) {
         binding.apply {
             textviewTitle.text = model.title
             textviewDate.text = model.releaseState
@@ -27,6 +27,9 @@ class HomeViewHolder(private val binding: ViewMovieItemBinding) : RecyclerView.V
                 .placeholder(R.drawable.place_holder_image)
                 .fitCenter()
                 .into(imageviewPoster)
+            root.setOnClickListener {
+                callback(model.id)
+            }
         }
     }
 }
