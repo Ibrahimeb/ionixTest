@@ -7,18 +7,6 @@
     android:background="@color/black"
     tools:context=".presentation.features.home.ui.HomeFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/spacing_5"
-        android:text="The Best List Movie"
-        android:textColor="@color/white"
-        android:textAppearance="@android:style/TextAppearance.Material.Headline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ProgressBar
         android:id="@+id/progressbar_home"
         android:layout_width="wrap_content"
@@ -29,6 +17,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/recyclerview_home" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_5"
+        android:text="The Best List Movie"
+        android:textAppearance="@android:style/TextAppearance.Material.Headline"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textview_home_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="We have error. Try later"
+        android:textAppearance="@android:style/TextAppearance.Material.Headline"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_home"
         android:layout_width="@dimen/spacing_empty"
@@ -37,23 +49,29 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:itemCount="3"
-        tools:listitem="@layout/view_movie_item"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        tools:listitem="@layout/view_movie_item" />
 
-    <TextView
-        android:id="@+id/textview_home_error"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/outlinedButton"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="We have error. Try later"
+        android:layout_marginTop="@dimen/spacing_4"
+        android:text="Outlined button"
         android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/textview_home_error"
+        app:layout_constraintStart_toStartOf="@id/textview_home_error"
+        app:layout_constraintTop_toBottomOf="@id/textview_home_error"
+        app:strokeColor="@color/white" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/error_group"
+        android:layout_width="wrap_content"
         android:visibility="gone"
-        android:textAppearance="@android:style/TextAppearance.Material.Headline"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="outlinedButton,textview_home_error" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

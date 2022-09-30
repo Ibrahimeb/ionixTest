@@ -1,5 +1,6 @@
 package com.example.ionixtest.data.features.home.repositories
 
+import android.util.Log
 import com.example.ionixtest.data.features.details.dao.MovieDao
 import com.example.ionixtest.data.features.home.api.HomeApi
 import com.example.ionixtest.data.features.home.entities.toModel
@@ -19,12 +20,23 @@ class HomeRepository @Inject constructor(
     override suspend fun getMovies(): Flow<RequestStatus<List<MovieModel>>> {
         return flow {
             emit(RequestStatus.Loading)
-            val result = HandlerResultHelper.getResult {
-                homeApi.getListMovie().items.map { it.toModel() }
+            val remoteResult = launchRemoteRequest()
+            if (remoteResult is RequestStatus.Success) {
+                emit(remoteResult)
+            } else {
+                emit(launchLocalStorageFallBack())
             }
-            if (result is RequestStatus.Success) handlerLocalStorage(result.value)
-            emit(result)
+
         }
+    }
+
+    private suspend fun launchRemoteRequest(): RequestStatus<List<MovieModel>> {
+        val result = HandlerResultHelper.getResult {
+            homeApi.getListMovie().items.map { it.toModel() }
+        }
+        if (result is RequestStatus.Success) handlerLocalStorage(result.value)
+        Log.i(this::class.java.simpleName, "launchRemoteRequest: result : ${result::class.java.simpleName}")
+        return result
     }
 
     private suspend fun handlerLocalStorage(itemList: List<MovieModel>) {
@@ -32,6 +44,15 @@ class HomeRepository @Inject constructor(
             itemList.forEach { movie ->
                 movieDao.insertMovie(movie)
             }
+        }
+    }
+
+    private suspend fun launchLocalStorageFallBack(): RequestStatus<List<MovieModel>> {
+        Log.i(this::class.java.simpleName, "launchLocalStorageFallBack: ")
+        return if (movieDao.getAllMovie().isEmpty()) {
+            RequestStatus.Error(null, "unknown error")
+        } else {
+            RequestStatus.Success(movieDao.getAllMovie())
         }
     }
 }

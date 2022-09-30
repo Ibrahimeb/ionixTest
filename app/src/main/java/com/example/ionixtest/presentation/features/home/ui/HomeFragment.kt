@@ -38,13 +38,22 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.eventsHomeLiveData.observe(viewLifecycleOwner, ::handlerEvent)
+        binding.outlinedButton.setOnClickListener {
+            viewModel.getMovies()
+        }
     }
 
     private fun handlerEvent(events: HomeEvents) {
         when (events) {
-            HomeEvents.ErrorRequest -> binding.textviewHomeError.isVisible = true
+            HomeEvents.ErrorRequest -> binding.apply {
+                errorGroup.isVisible = true
+                progressbarHome.isVisible = false
+            }
             is HomeEvents.IsProgressBar -> binding.progressbarHome.isVisible = events.isLoading
-            is HomeEvents.SuccessRequest -> setupRecyclerView(events.listItem)
+            is HomeEvents.SuccessRequest -> {
+                binding.errorGroup.isVisible = false
+                setupRecyclerView(events.listItem)
+            }
         }
     }
 
