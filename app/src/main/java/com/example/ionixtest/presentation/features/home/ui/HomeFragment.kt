@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.ionixtest.databinding.FragmentHomeBinding
 import com.example.ionixtest.domain.models.MovieModel
+import com.example.ionixtest.presentation.features.home.contract.HomeEvents
 import com.example.ionixtest.presentation.features.home.viewmodels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,7 +32,15 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.getMovies()
-        viewModel.homeMovieListLiveData.observe(viewLifecycleOwner, ::setupRecyclerView)
+        viewModel.eventsHomeLiveData.observe(viewLifecycleOwner, ::handlerEvent)
+    }
+
+    private fun handlerEvent(events: HomeEvents) {
+        when (events) {
+            HomeEvents.ErrorRequest -> binding.textviewHomeError.isVisible = true
+            is HomeEvents.IsProgressBar -> binding.progressbarHome.isVisible = events.isLoading
+            is HomeEvents.SuccessRequest -> setupRecyclerView(events.listItem)
+        }
     }
 
     private fun setupRecyclerView(itemList: List<MovieModel>) {

@@ -19,6 +19,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ProgressBar
+        android:id="@+id/progressbar_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerview_home"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerview_home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recyclerview_home" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_home"
         android:layout_width="@dimen/spacing_empty"
@@ -30,6 +40,20 @@
         tools:itemCount="3"
         tools:listitem="@layout/view_movie_item"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textview_home_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="We have error. Try later"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        android:textAppearance="@android:style/TextAppearance.Material.Headline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
